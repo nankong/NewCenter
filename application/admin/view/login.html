@@ -8,7 +8,7 @@
         <meta name="description" content="Violate Responsive Admin Template">
         <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
 
-        <title>Super Admin Responsive Template</title>
+        <title>登录</title>
             
         <!-- CSS -->
         <link href="__ADMIN__/css/bootstrap.min.css" rel="stylesheet">
@@ -20,7 +20,7 @@
     <body id="skin-blur-violate">
         <section id="login">
             <header>
-                <h1>SUPER ADMIN</h1>
+                <h1>超级管理员</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
             </header>
         
@@ -29,20 +29,20 @@
             <!-- Login -->
             <form class="box tile animated active" id="box-login">
                 <h2 class="m-t-0 m-b-15">Login</h2>
-                <input type="text" class="login-control m-b-10" placeholder="Username or Email Address">
-                <input type="password" class="login-control" placeholder="Password">
+                <input type="text" class="login-control m-b-10" placeholder="Username or Email Address" id="name">
+                <input type="password" class="login-control" placeholder="Password" id="password">
                 <div class="checkbox m-b-20">
                     <label>
-                        <input type="checkbox">
+                        <input type="checkbox" id="remember">
                         Remember Me
                     </label>
                 </div>
-                <button class="btn btn-sm m-r-5">Sign In</button>
+                <button class="btn btn-sm m-r-5" id="login">Sign In</button>
                 
-                <small>
-                    <a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or
-                    <a class="box-switcher" data-switch="box-reset" href="">Forgot Password?</a>
-                </small>
+                <!--<small>-->
+                    <!--<a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or-->
+                    <!--<a class="box-switcher" data-switch="box-reset" href="">Forgot Password?</a>-->
+                <!--</small>-->
             </form>
             
             <!-- Register -->
@@ -63,7 +63,7 @@
             <form class="box animated tile" id="box-reset">
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu risus. Curabitur commodo lorem fringilla enim feugiat commodo sed ac lacus.</p>
-                <input type="email" class="login-control m-b-20" placeholder="Email Address">    
+                <input type="email" class="login-control m-b-20" placeholder="Email Address">
 
                 <button class="btn btn-sm m-r-5">Reset Password</button>
 
@@ -84,4 +84,19 @@
         <!-- All JS functions -->
         <script src="__ADMIN__/js/functions.js"></script>
     </body>
+    <script>
+        $(function(){
+            $('#login').click(function(){
+                var data = {};
+                 data.name = $('#name').val();
+                 data.pass = $('#password').val();
+                 console.log(data);
+
+//                $.post("admin/login/toLogin",{data:data},function(result){
+//                   // $("span").html(result);
+//                });
+            })
+        })
+    </script>
 </html>
+

@@ -13,11 +13,14 @@ namespace app\admin\controller;
 
 class Index extends Base
 {
+
     /**
      * @return mixed
-     * 后台首页页
+     * 后台首页
      */
     public function index(){
         return $this->fetch('/index');
     }
+
+
 }

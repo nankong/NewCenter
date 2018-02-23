@@ -7,7 +7,7 @@
  */
 
 namespace app\admin\controller;
-
+use think\Session;
 
 use think\Controller;
 
@@ -15,8 +15,8 @@ class Base extends Controller
 {
     public function __construct(){
         parent::__construct();
-        if(!session('superadmin')){
-            return $this->fetch('/login');
+        if(!session::get('superadmin')){
+             $this->redirect('login/login');
         }
     }
 }
