@@ -31,13 +31,15 @@
                 <h2 class="m-t-0 m-b-15">Login</h2>
                 <input type="text" class="login-control m-b-10" placeholder="Username or Email Address" id="name">
                 <input type="password" class="login-control" placeholder="Password" id="password">
+
                 <div class="checkbox m-b-20">
                     <label>
                         <input type="checkbox" id="remember">
                         Remember Me
                     </label>
                 </div>
-                <button class="btn btn-sm m-r-5" id="login">Sign In</button>
+                <!--<button class="btn btn-sm m-r-5" id="ac" >Sign In</button>-->
+                <input type="button" class="btn btn-sm m-r-5" id="Log" value="Sign In">
                 
                 <!--<small>-->
                     <!--<a class="box-switcher" data-switch="box-register" href="">Don't have an Account?</a> or-->
@@ -53,12 +55,10 @@
                 <input type="email" class="login-control m-b-10" placeholder="Email Address">    
                 <input type="password" class="login-control m-b-10" placeholder="Password">
                 <input type="password" class="login-control m-b-20" placeholder="Confirm Password">
-
                 <button class="btn btn-sm m-r-5">Register</button>
 
                 <small><a class="box-switcher" data-switch="box-login" href="">Already have an Account?</a></small>
             </form>
-            
             <!-- Forgot Password -->
             <form class="box animated tile" id="box-reset">
                 <h2 class="m-t-0 m-b-15">Reset Password</h2>
@@ -83,18 +83,46 @@
         
         <!-- All JS functions -->
         <script src="__ADMIN__/js/functions.js"></script>
+
+        <script src="__STATIC__/../layer/layer.js"></script>
+
     </body>
     <script>
         $(function(){
-            $('#login').click(function(){
-                var data = {};
-                 data.name = $('#name').val();
-                 data.pass = $('#password').val();
-                 console.log(data);
-
-//                $.post("admin/login/toLogin",{data:data},function(result){
-//                   // $("span").html(result);
-//                });
+            $("#Log").click(function(){
+                alert(11);
+                var username = $("#name").val();
+                var password = $("#password").val();
+                console.log(username);
+                $.ajax({
+                    url:"{:url('admin/login/toLogin')}",
+                    data:{
+                        'admin':username,
+                        'pass':password
+                    },
+                    type:"POST",
+                    success:function(data){
+                        console.log(data);
+                        if(data == 1){
+                            layer.msg('管理员已登录',function(){
+                                window.location.href="{:url('admin/index/index')}";
+                            })
+                        }
+                        if(data == 2){
+                            layer.msg('登录成功',function(){
+                                window.location.href="{:url('admin/index/index')}";
+                            })
+                        }
+                        if(data == 3){
+                            layer.msg('用户名或密码错误')
+                        }
+                    },
+                    error:function(){
+                        layer.msg('未知错误，重新登录',function(){
+                            window.location.reload();
+                        })
+                    }
+                })
             })
         })
     </script>

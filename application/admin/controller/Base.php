@@ -13,10 +13,16 @@ use think\Controller;
 
 class Base extends Controller
 {
+    /**
+     * Base constructor.
+     * 验证管理员
+     */
     public function __construct(){
         parent::__construct();
-        if(!session::get('superadmin')){
+        if(empty(session("superadmin"))){
              $this->redirect('login/login');
         }
     }
+
+
 }
